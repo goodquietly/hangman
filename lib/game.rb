@@ -14,9 +14,9 @@ class Game
 
   def normalize_letter(letter)
     case letter
-    when "Ё" then "Е"
-    when "Й" then "И"
-    else letter   
+    when 'Ё' then 'Е'
+    when 'Й' then 'И'
+    else letter
     end
   end
 
@@ -47,15 +47,9 @@ class Game
   # массиве на соответствующем месте находится nil. Этот массив нужен методу
   # экземпляра класса ConsoleInterface для вывода слова на игровом табло.
   def letters_to_guess
-    result =
-      @letters.map do |letter|
-        if @user_guesses.include?(normalize_letter(letter))
-          normalize_letter(letter)
-        else
-          nil
-        end
-      end
-    result
+    @letters.map do |letter|
+      normalize_letter(letter) if @user_guesses.include?(normalize_letter(letter))
+    end
   end
 
   # Возвращает true, если у пользователя не осталось ошибок, т.е. игра проиграна
@@ -73,9 +67,7 @@ class Game
   # Если игра не закончена и передаваемая буква отсутствует в массиве
   # введённых букв, то закидывает передаваемую букву в массив "попыток".
   def play!(letter)
-    if !over? && !@user_guesses.include?(normalize_letter(letter))
-      @user_guesses << normalize_letter(letter)
-    end
+    @user_guesses << normalize_letter(letter) if !over? && !@user_guesses.include?(normalize_letter(letter))
   end
 
   # Возвращает true, если не осталось неотгаданных букв (пользователь выиграл)
