@@ -7,15 +7,21 @@
 
 Установите `Bundler`:
 
-```gem install bundler```
+```
+gem install bundler
+```
 
 Находясь в папке с игрой, установите бибилиотеки:
 
-```bundle install```
+```
+bundle install
+```
 
 Запустите программу:
 
-```bundle exec ruby main.rb```
+```
+bundle exec ruby main.rb
+```
 
 ### Принцип игры:
 
